@@ -18,10 +18,12 @@ class StationSelectionBox extends StatelessWidget {
         children: [
           selectStation('출발역', depart, context),
           // 세로선
-          Container(
+          SizedBox(
             width: 2,
             height: 50,
-            color: Colors.grey[400],
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: Colors.grey[400]),
+            ),
           ),
           selectStation('도착역', arrive, context),
         ],
