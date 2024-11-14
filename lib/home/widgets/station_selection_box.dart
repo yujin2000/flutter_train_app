@@ -6,12 +6,13 @@ class StationSelectionBox extends StatelessWidget {
     return Container(
       height: 200,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           selectStation('출발역'),
           // 세로선
-          VerticalDivider(
+          Container(
             width: 2,
+            height: 50,
             color: Colors.grey[400],
           ),
           selectStation('도착역'),
@@ -26,6 +27,7 @@ class StationSelectionBox extends StatelessWidget {
 
   Column selectStation(String text) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           text,

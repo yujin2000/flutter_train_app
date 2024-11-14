@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 
 class StationListPage extends StatelessWidget {
+  List<String> stationNames = [
+    '수서',
+    '동탄',
+    '평택지제',
+    '천안아산',
+    '오송',
+    '대전',
+    '김천구미',
+    '동대구',
+    '경주',
+    '울산',
+    '부산'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO: 출발/도착역 title 변경
       appBar: AppBar(title: Text('출발역')),
       body: Column(
-        children: [
-          stationList('수서'),
-          stationList('동탄'),
-          stationList('평택지제'),
-          stationList('천안아산'),
-          stationList('오송'),
-          stationList('대전'),
-          stationList('김천구미'),
-          stationList('동대구'),
-          stationList('경주'),
-          stationList('울산'),
-          stationList('부산'),
-        ],
+        children: [for (String station in stationNames) stationList(station)],
       ),
     );
   }
