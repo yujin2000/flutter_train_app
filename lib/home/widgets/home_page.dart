@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home/widgets/station_selection_box.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String? depart;
+  String? arrive;
+
+  void onStationChanged(String title, String station) {
+    setState(() {
+      title == '출발역' ? depart = station : arrive = station;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +27,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StationSelectionBox(),
+            StationSelectionBox(depart, arrive, onStationChanged),
             SizedBox(height: 20),
             // 버튼
             SizedBox(
