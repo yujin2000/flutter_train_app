@@ -22,7 +22,7 @@ class _SeatPageState extends State<SeatPage> {
     setState(() {
       selectedRow = row;
       selectedCol = col;
-      String rowCol = '$row:$col';
+      String rowCol = '$row-$col';
       if (selectedSeats.contains(rowCol)) {
         selectedSeats.remove(rowCol);
       } else {
@@ -33,6 +33,7 @@ class _SeatPageState extends State<SeatPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('좌석 ===> ${selectedSeats.toString()}');
     return Scaffold(
       appBar: AppBar(
         title: Text('좌석 선택'),
@@ -44,7 +45,7 @@ class _SeatPageState extends State<SeatPage> {
           SelectedLable(),
           SizedBox(height: 20),
           SeatBox(selectedSeats, onSelected),
-          SeatBottom(),
+          SeatBottom(selectedSeats),
         ],
       ),
     );

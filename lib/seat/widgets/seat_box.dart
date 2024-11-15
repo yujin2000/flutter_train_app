@@ -35,13 +35,13 @@ class SeatBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          seatBox('A', text),
+          seatBox(text, 'A'),
           SizedBox(width: 4),
-          seatBox('B', text),
+          seatBox(text, 'B'),
           textBox(text),
-          seatBox('C', text),
+          seatBox(text, 'C'),
           SizedBox(width: 4),
-          seatBox('D', text),
+          seatBox(text, 'D'),
         ],
       ),
     );
@@ -58,7 +58,7 @@ class SeatBox extends StatelessWidget {
 
   Container seatBox(String row, String col) {
     // 좌석 선택 체크
-    bool selected = selectedSeats.contains('$row:$col');
+    bool selected = selectedSeats.contains('$row-$col');
     return Container(
       width: 50,
       height: 50,

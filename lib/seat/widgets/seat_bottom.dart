@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SeatBottom extends StatelessWidget {
+  SeatBottom(this.selectedSeats);
+  Set<String> selectedSeats;
+
   @override
   Widget build(BuildContext context) {
     // 버튼을 갖고 있는 Container 생성
@@ -17,7 +21,12 @@ class SeatBottom extends StatelessWidget {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // 비어있으면 예약 불가
+                  if (selectedSeats.isNotEmpty) {
+                    reservationDialog(context);
+                  }
+                },
                 child: Text(
                   '에매 하기',
                   style: TextStyle(
@@ -37,6 +46,36 @@ class SeatBottom extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> reservationDialog(BuildContext context) {
+    return showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        String seats = selectedSeats.join(', ');
+        return CupertinoAlertDialog(
+          title: Text('예매 하시겠습니까?'),
+          content: Text('좌석 : $seats'),
+          actions: [
+            CupertinoDialogAction(
+              isDefaultAction: true, // 취소
+              onPressed: () {
+                Navigator.of(context).pop(); // 뒤로가기
+              },
+              child: Text('취소'),
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: true, // 확인
+              onPressed: () {
+                // 특정 조건으로(첫 화면)으로 이동
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+              child: Text('확인'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
