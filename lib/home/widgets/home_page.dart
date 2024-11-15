@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home/widgets/station_selection_box.dart';
+import 'package:flutter_train_app/seat/widgets/seat_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,7 +35,15 @@ class _HomePageState extends State<HomePage> {
               height: 56,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // 출발/도착역 모두 선택이 되어있어야 좌석 선택 가능
+                  if (depart != null && arrive != null) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SeatPage(depart!, arrive!);
+                    }));
+                  }
+                },
                 child: Text(
                   '좌석 선택',
                   style: TextStyle(

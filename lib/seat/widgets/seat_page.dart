@@ -5,6 +5,10 @@ import 'package:flutter_train_app/seat/widgets/seat_box.dart';
 import 'package:flutter_train_app/seat/widgets/selected_lable.dart';
 
 class SeatPage extends StatelessWidget {
+  String depart;
+  String arrive;
+  SeatPage(this.depart, this.arrive);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +17,7 @@ class SeatPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          DepartArrivalStation(),
+          DepartArrivalStation(depart, arrive),
           SizedBox(height: 20),
           SelectedLable(),
           SizedBox(height: 20),
