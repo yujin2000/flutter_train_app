@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SeatBox extends StatelessWidget {
+  SeatBox(this.selectedSeats, this.onSelected);
+
+  Set<String> selectedSeats;
+  void Function(String row, String col) onSelected;
+
   @override
   Widget build(BuildContext context) {
     // Column 안에 ListView 를 사용할 때는 높이를 고정하거나 Expanded 로 감싸주어야 함
@@ -10,11 +15,11 @@ class SeatBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              numBox('A'),
-              numBox('B'),
-              numBox(''),
-              numBox('C'),
-              numBox('D'),
+              textBox('A'),
+              textBox('B'),
+              textBox(''),
+              textBox('C'),
+              textBox('D'),
             ],
           ),
           for (int i = 1; i <= 20; i++) seatBoxRow('$i'),
@@ -30,27 +35,19 @@ class SeatBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          seatBox(),
+          seatBox('A', text),
           SizedBox(width: 4),
-          seatBox(),
-          Container(
-            alignment: Alignment.center,
-            width: 50,
-            height: 50,
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-          seatBox(),
+          seatBox('B', text),
+          textBox(text),
+          seatBox('C', text),
           SizedBox(width: 4),
-          seatBox(),
+          seatBox('D', text),
         ],
       ),
     );
   }
 
-  Widget numBox(String text) {
+  Widget textBox(String text) {
     return Container(
       alignment: Alignment.center,
       width: 50,
@@ -59,12 +56,22 @@ class SeatBox extends StatelessWidget {
     );
   }
 
-  Container seatBox() {
+  Container seatBox(String row, String col) {
+    // 좌석 선택 체크
+    bool selected = selectedSeats.contains('$row:$col');
     return Container(
       width: 50,
       height: 50,
+      child: GestureDetector(
+        onTap: () {
+          print('seatBox $row - $col 클릭');
+          onSelected(row, col);
+        },
+      ),
       decoration: BoxDecoration(
-          color: Colors.grey[300], borderRadius: BorderRadius.circular(8)),
+        color: selected ? Colors.purple : Colors.grey[300],
+        borderRadius: BorderRadius.circular(8),
+      ),
     );
   }
 }
