@@ -37,22 +37,20 @@ class StationListPage extends StatelessWidget {
     );
   }
 
-  Container stationList(String title, String station, BuildContext context) {
-    return Container(
-      // Text 를 center 로 해도 되지만 전체적으로 center 값을 주고 싶을 때 사용
-      alignment: Alignment.centerLeft,
-      width: double.infinity,
-      height: 50,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 7),
-        // 역 선택을 위채 Button 으로 변경
-        // TODO: GestureDetector 로도 되는지 확인
-        child: TextButton(
-          onPressed: () {
-            onStationChanged(title, station);
-            // 다시 HomePage 로 이동
-            Navigator.pop(context);
-          },
+  Widget stationList(String title, String station, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onStationChanged(title, station);
+        // 다시 HomePage 로 이동
+        Navigator.pop(context);
+      },
+      child: Container(
+        // Text 를 center 로 해도 되지만 전체적으로 center 값을 주고 싶을 때 사용
+        alignment: Alignment.centerLeft,
+        width: double.infinity,
+        height: 50,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             station,
             style: TextStyle(
@@ -62,14 +60,14 @@ class StationListPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      // decoration => container 의 크기 따라감
-      decoration: BoxDecoration(
-        border: Border(
-          // Container 밑에만 라인
-          bottom: BorderSide(
-            width: 1,
-            color: Colors.grey[300]!,
+        // decoration => container 의 크기 따라감
+        decoration: BoxDecoration(
+          border: Border(
+            // Container 밑에만 라인
+            bottom: BorderSide(
+              width: 1,
+              color: Colors.grey[300]!,
+            ),
           ),
         ),
       ),
