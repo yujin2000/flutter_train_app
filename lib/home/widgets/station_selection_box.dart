@@ -54,7 +54,8 @@ class StationSelectionBox extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return StationListPage(text, onStationChanged);
+                    return StationListPage(
+                        text, depart, arrive, onStationChanged);
                   },
                 ),
               );

@@ -3,10 +3,14 @@ import 'package:flutter_train_app/home/widgets/home_page.dart';
 
 class StationListPage extends StatelessWidget {
   String titleLabel;
+  String? depart;
+  String? arrive;
   void Function(String title, String station) onStationChanged;
 
   StationListPage(
     this.titleLabel,
+    this.depart,
+    this.arrive,
     this.onStationChanged,
   );
 
@@ -29,15 +33,42 @@ class StationListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(titleLabel)),
       body: Column(
-        children: [
-          for (String station in stationNames)
-            stationList(titleLabel, station, context)
-        ],
+        children: generateStations(depart, arrive, context),
       ),
     );
   }
 
-  Widget stationList(String title, String station, BuildContext context) {
+  // 출발역을 선택한 뒤 도착역을 고를 때 이전에 설정한 출발역을 제외한 목록 출력
+  // 도착역을 선택한 뒤 출발역을 고를 때 이전에 설정한 도착역을 제외한 목록 출력
+  // 출발/도착역이 지정되지 않은 경우 모든 역 목록 출력
+  List<Widget> generateStations(
+    String? depart,
+    String? arrive,
+    BuildContext context,
+  ) {
+    List<Widget> stations = [];
+    if (titleLabel == '출발역' && arrive != null) {
+      for (String station in stationNames) {
+        if (station != arrive) {
+          stations.add(stationWidget(titleLabel, station, context));
+        }
+      }
+    } else if (titleLabel == '도착역' && depart != null) {
+      for (String station in stationNames) {
+        if (station != depart) {
+          stations.add(stationWidget(titleLabel, station, context));
+        }
+      }
+    } else {
+      for (String station in stationNames) {
+        stations.add(stationWidget(titleLabel, station, context));
+      }
+    }
+
+    return stations;
+  }
+
+  Widget stationWidget(String title, String station, BuildContext context) {
     return GestureDetector(
       onTap: () {
         onStationChanged(title, station);
