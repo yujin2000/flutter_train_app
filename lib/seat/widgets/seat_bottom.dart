@@ -63,7 +63,12 @@ class SeatBottom extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop(); // 뒤로가기
               },
-              child: Text('취소'),
+              child: Text(
+                '취소',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
             ),
             CupertinoDialogAction(
               isDestructiveAction: true, // 확인
@@ -71,7 +76,12 @@ class SeatBottom extends StatelessWidget {
                 // 특정 조건으로(첫 화면)으로 이동
                 Navigator.popUntil(context, (route) => route.isFirst);
               },
-              child: Text('확인'),
+              child: Text(
+                '확인',
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
             ),
           ],
         );
