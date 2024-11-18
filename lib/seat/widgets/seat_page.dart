@@ -34,6 +34,12 @@ class _SeatPageState extends State<SeatPage> {
   @override
   Widget build(BuildContext context) {
     print('좌석 ===> ${selectedSeats.toString()}');
+    // 테마 모드 확인
+    bool isLightMode = Theme.of(context).brightness == Brightness.light;
+
+    // light 모드일 때 seatBox 는 Colors.grey[300] 아니면 Colors.grey[700]
+    Color? seatBoxColor = isLightMode ? Colors.grey[300] : Colors.grey[700];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('좌석 선택'),
@@ -42,9 +48,9 @@ class _SeatPageState extends State<SeatPage> {
         children: [
           DepartArrivalStation(widget.depart, widget.arrive),
           SizedBox(height: 20),
-          SelectedLable(),
+          SelectedLable(seatBoxColor),
           SizedBox(height: 20),
-          SeatBox(selectedSeats, onSelected),
+          SeatBox(selectedSeats, onSelected, seatBoxColor),
           SeatBottom(selectedSeats),
         ],
       ),

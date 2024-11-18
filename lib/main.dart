@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home/widgets/home_page.dart';
 import 'package:flutter_train_app/seat/widgets/seat_page.dart';
 import 'package:flutter_train_app/station_list/widgets/station_list_page.dart';
+import 'package:flutter_train_app/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
+      themeMode: ThemeMode.system,
+      theme: lightTheme,
+      darkTheme: darkTheme,
     );
   }
 }

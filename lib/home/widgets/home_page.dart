@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_train_app/home/widgets/station_selection_box.dart';
 import 'package:flutter_train_app/seat/widgets/seat_page.dart';
 
@@ -19,6 +20,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // 테마 모드 확인
+    bool isLightMode = Theme.of(context).brightness == Brightness.light;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('기차 예매'),
@@ -63,7 +67,10 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      backgroundColor: Colors.grey[200],
+      // ThemeMode 가 light 인 경우 background 설정을 Colors.grey[200] 아니면 171216(dark 모드 색상) 로 지정
+      backgroundColor: isLightMode
+          ? Colors.grey[200]
+          : Color.fromARGB(255, 23, 18, 22), // #171216 Color Hex
     );
   }
 }

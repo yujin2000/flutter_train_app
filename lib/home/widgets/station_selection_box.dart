@@ -28,9 +28,9 @@ class StationSelectionBox extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(20)),
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
     );
   }
 
@@ -62,7 +62,7 @@ class StationSelectionBox extends StatelessWidget {
             },
             child: Text(
               station == null ? '선택' : station,
-              style: TextStyle(fontSize: 40, color: Colors.black),
+              style: TextStyle(fontSize: 40),
             ),
           ),
         ],

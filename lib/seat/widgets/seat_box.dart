@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SeatBox extends StatelessWidget {
-  SeatBox(this.selectedSeats, this.onSelected);
+  SeatBox(this.selectedSeats, this.onSelected, this.seatBoxColor);
 
   Set<String> selectedSeats;
   void Function(String row, String col) onSelected;
+  Color? seatBoxColor;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +70,7 @@ class SeatBox extends StatelessWidget {
         },
       ),
       decoration: BoxDecoration(
-        color: selected ? Colors.purple : Colors.grey[300],
+        color: selected ? Colors.purple : seatBoxColor,
         borderRadius: BorderRadius.circular(8),
       ),
     );

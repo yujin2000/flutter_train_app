@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SelectedLable extends StatelessWidget {
+  Color? seatBoxColor;
+  SelectedLable(this.seatBoxColor);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,15 +23,12 @@ class SelectedLable extends StatelessWidget {
           height: 24,
           width: 24,
           decoration: BoxDecoration(
-            color: text == '선택됨' ? Colors.purple : Colors.grey[300],
+            color: text == '선택됨' ? Colors.purple : seatBoxColor,
             borderRadius: BorderRadius.circular(8),
           ),
         ),
         SizedBox(width: 4),
-        Text(
-          text,
-          style: TextStyle(color: Colors.black),
-        )
+        Text(text)
       ],
     );
   }
