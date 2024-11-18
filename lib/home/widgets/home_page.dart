@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_train_app/home/widgets/station_selection_box.dart';
 import 'package:flutter_train_app/seat/widgets/seat_page.dart';
 
