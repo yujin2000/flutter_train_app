@@ -47,8 +47,8 @@ class StationSelectionBox extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          TextButton(
-            onPressed: () {
+          GestureDetector(
+            onTap: () {
               // 버튼 누르면 StationListPage 으로 이동
               Navigator.push(
                 context,
