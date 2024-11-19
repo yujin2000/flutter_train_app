@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/home/widgets/station_selection_box.dart';
+import 'package:flutter_train_app/main.dart';
 import 'package:flutter_train_app/seat/widgets/seat_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('기차 예매'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // icon 클릭할 때 Brightness 가 light 일 경우 value 값을 ThemeMode.dark 값으로 지정 아니면 ThemeMode.light
+              MyApp.themeNotifier.value =
+                  isLightMode ? ThemeMode.dark : ThemeMode.light;
+            },
+            // 모드가 light 일 경우 icon 이 dark_mode 아니면 light_mode
+            icon: Icon(isLightMode ? Icons.dark_mode : Icons.light_mode),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

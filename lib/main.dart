@@ -9,13 +9,21 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.system);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      themeMode: ThemeMode.system,
-      theme: lightTheme,
-      darkTheme: darkTheme,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          home: HomePage(),
+          themeMode: currentMode,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+        );
+      },
     );
   }
 }
